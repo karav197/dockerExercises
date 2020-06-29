@@ -54,8 +54,8 @@ pipeline {
                         passwordVariable: 'password')
                     ]) {
                         
-                        sh "echo '${password}' | sudo -S docker exec -t isng bash -c 'df -h > /stat/stats.txt'"
-                        sh "echo '${password}' | sudo -S docker exec -t isng bash -c 'top -n 1 -b >> /stat/stats.txt'"
+                        sh "echo '${password}' | sudo -S docker exec -t akarav bash -c 'df -h > /stat/stats.txt'"
+                        sh "echo '${password}' | sudo -S docker exec -t akarav bash -c 'top -n 1 -b >> /stat/stats.txt'"
                     }
                 }
             }
