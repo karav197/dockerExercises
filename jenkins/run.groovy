@@ -11,8 +11,8 @@ pipeline {
                         passwordVariable: 'password')
                     ]) {
                         try {
-                            sh "echo '${password}' | sudo -S docker stop akarav"
-                            sh "echo '${password}' | sudo -S docker container rm akarav"
+                            sh "echo '${password}' | sudo -S docker stop karav197"
+                            sh "echo '${password}' | sudo -S docker container rm karav197"
                         } catch (Exception e) {
                             print 'container not exist, skip clean'
                         }
@@ -39,8 +39,8 @@ pipeline {
                         passwordVariable: 'password')
                     ]) {
 
-                        sh "echo '${password}' | sudo -S docker build ${WORKSPACE}/auto -t akarav"
-                        sh "echo '${password}' | sudo -S docker run -d -p 98765:80 --name akarav -v /home/adminci/is_mount_dir:/stat akarav"
+                        sh "echo '${password}' | sudo -S docker build ${WORKSPACE}/auto -t karav197"
+                        sh "echo '${password}' | sudo -S docker run -d -p 98764:80 --name karav197 -v /home/adminci/is_mount_dir:/stat karav197"
                     }
                 }
             }
@@ -54,8 +54,8 @@ pipeline {
                         passwordVariable: 'password')
                     ]) {
                         
-                        sh "echo '${password}' | sudo -S docker exec -t akarav bash -c 'df -h > /stat/stats.txt'"
-                        sh "echo '${password}' | sudo -S docker exec -t akarav bash -c 'top -n 1 -b >> /stat/stats.txt'"
+                        sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'df -h > /stat/stats.txt'"
+                        sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'top -n 1 -b >> /stat/stats.txt'"
                     }
                 }
             }
