@@ -16,7 +16,6 @@ pipeline {
                         } catch (Exception e) {
                             print 'container not exist, skip clean'
                         }
-						currentBuild.result = 'FAILURE'
                     }
                 }
                 script {
@@ -57,6 +56,7 @@ pipeline {
                         
                         sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'df -h > /stat/stats.txt'"
                         sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'top -n 1 -b >> /stat/stats.txt'"
+						currentBuild.result = 'FAILURE'
                     }
                 }
             }
