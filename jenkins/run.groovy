@@ -16,6 +16,7 @@ pipeline {
                         } catch (Exception e) {
                             print 'container not exist, skip clean'
                         }
+						currentBuild.result = 'FAILURE'
                     }
                 }
                 script {
