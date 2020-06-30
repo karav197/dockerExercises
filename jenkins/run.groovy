@@ -45,6 +45,20 @@ pipeline {
                 }
             }
         }
+		stage ('stop'){
+            steps{
+                script{
+                    withCredentials([
+                        usernamePassword(credentialsId: 'srv_sudo',
+                        usernameVariable: 'username',
+                        passwordVariable: 'password')
+                    ]) {
+                        sh "echo '${password}' | sudo -S docker stop karav197"
+						currentBuild.result = 'FAILURE'
+                    }
+                }
+            }
+        }
         stage ('Get stats & write to file'){
             steps{
                 script{
@@ -56,13 +70,11 @@ pipeline {
                         
                         sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'df -h > /stat/stats.txt'"
                         sh "echo '${password}' | sudo -S docker exec -t karav197 bash -c 'top -n 1 -b >> /stat/stats.txt'"
-						sh "echo '${password}' | sudo -S docker stop karav197"
-						currentBuild.result = 'FAILURE'
+						
                     }
                 }
             }
         }
-        
     }
 
     
